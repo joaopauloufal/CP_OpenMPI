@@ -1,6 +1,6 @@
 1. Instalar o OpenMPI: sudo apt-get install libopenmpi-dev openmpi-bin libhdf5-openmpi-dev
 2. Depois, instalar o mpy4py: sudo apt-get install libopenmpi-dev openmpi-bin libhdf5-openmpi-dev
 
-3. Para excutar o arquivo, primeiro dev-se acessar o diretório do script python e rodar em um terminal o seguinte comando: mpirun -np 5 python main.py
+3. Para excutar o arquivo, primeiro deve-se acessar o diretório do script python e rodar em um terminal o seguinte comando: mpirun -np 40 python paralela.py
 
 Obs.: Tutorial completo em: http://pythonprogramming.net/installing-testing-mpi4py-mpi-python-tutorial/?completed=/learning-use-mpi-python-mpi4py-module/ 
