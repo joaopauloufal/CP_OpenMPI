@@ -10,13 +10,13 @@ comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
 
-numero = 40
+numero = 10
 lista_sequencia = []
 soma = 0
 
 if rank == 0:
     
-    for i in range(1, numero+1):
+    for i in range(numero):
         lista_sequencia.append(i)
     data = lista_sequencia
     
@@ -24,26 +24,26 @@ if rank == 0:
     
     for i, chunk in enumerate(data):
         chunks[i % size].append(chunk)
-    print 'Lista que será processada:',data
+    print 'Lista que será processada:',chunks
 else:
     data = None
     chunks = None
    
 data = comm.scatter(chunks, root=0)
 
-for i in range(len(data)):
-    if type(data) == list:
-        res = fibonacci(data[i])
+for i in data:
+    if type(i) == list:
+        res = fibonacci(i)
     else:
-        res = fibonacci(data)
+        res = fibonacci(i)
     data = res
-    print 'Processo',rank,'tem dado:',res
+    print 'Processo',rank,'tem dado:',data
 
-newData = comm.gather(data,root=0)
+    newData = comm.gather(data,root=0)
 
 if rank == 0:
     print 'Processo mestre dado:',newData
-    #print "Soma total :", sum(newData)
+    print "Soma total :", sum(newData)
 
     fim = time.time()
     print "Tempo total de execução: ", fim-ini
