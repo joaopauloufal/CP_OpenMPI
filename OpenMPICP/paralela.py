@@ -16,7 +16,7 @@ soma = 0
 
 if rank == 0:
     
-    for i in range(numero):
+    for i in range(numero+1):
         lista_sequencia.append(i)
     data = lista_sequencia
     
@@ -39,7 +39,7 @@ for i in data:
     data = res
     print 'Processo',rank,'tem dado:',data
 
-    newData = comm.gather(data,root=0)
+newData = comm.gather(data,root=0)
 
 if rank == 0:
     print 'Processo mestre dado:',newData
